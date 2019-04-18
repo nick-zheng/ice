@@ -3,7 +3,7 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, Promise);
 
-const API_ROOT = '/api';
+const API_ROOT = 'http://127.0.0.1:7001/api';
 
 const responseBody = res => res.body;
 

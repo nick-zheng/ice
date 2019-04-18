@@ -6,7 +6,7 @@ import { PROJECTS_PAGE_LOADED, PROJECTS_PAGE_UNLOADED } from '@constants/actionT
 import agent from '@utils/agent';
 
 const mapStateToProps = state => ({
-  projects: state.projects,
+  ...state.projects,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Projects extends Component {
   static propTypes = {
+    projects: PropTypes.array.isRequired,
     onLoad: PropTypes.func.isRequired,
     onUnload: PropTypes.func.isRequired,
   };
@@ -35,10 +36,17 @@ class Projects extends Component {
   projectPath = '';
 
   render() {
+    const { projects } = this.props;
+
     return (
       <div>
         <div>
           Project
+        </div>
+        <div>
+          {projects.map(({ name }) => {
+            return name;
+          })}
         </div>
         <div>
           <div>

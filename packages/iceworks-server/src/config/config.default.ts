@@ -17,5 +17,9 @@ export = (appInfo: any) => {
     },
   };
 
+  config.cors = {
+    origin: '*',
+  };
+
   return config;
 };
