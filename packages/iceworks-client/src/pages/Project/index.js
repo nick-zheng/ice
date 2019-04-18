@@ -1,31 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Input } from '@alifd/next';
+import { useMappedState } from 'redux-react-hook';
 
-export default class Project extends Component {
-  state = {};
 
-  onOpenProject = () => {
-  }
+export default function Projects() {
+  const { projects } = useMappedState(state => ({
+    projects: state.projects,
+  }));
 
-  render() {
-    return (
+  console.debug('projects', projects);
+
+  let projectPath = '';
+
+  return (
+    <div>
+      <div>
+        Project
+      </div>
       <div>
         <div>
-          Project
+          <Input onChange={(value) => {
+              projectPath = value;
+            }}
+          />
+          <Button onClick={() => {
+              alert(projectPath);
+            }}
+          >
+            打开项目
+          </Button>
         </div>
         <div>
-          <div>
-            <Input onChange={(value) => {
-                this.projectPath = value;
-              }}
-            />
-            <Button onClick={this.onOpenProject}>打开项目</Button>
-          </div>
-          <div>
-            <Button>创建项目</Button>
-          </div>
+          <Button>创建项目</Button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
