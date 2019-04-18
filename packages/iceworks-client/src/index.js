@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
+import '@utils/logger';
 import '@alifd/next/reset.scss';
 
 import MainLayout from './layouts/MainLayout';
