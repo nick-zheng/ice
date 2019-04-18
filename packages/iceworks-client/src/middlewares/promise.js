@@ -1,12 +1,15 @@
+
+import log from '@utils/logger';
 import {
   ASYNC_START,
   ASYNC_END,
 } from '../constants/actionTypes';
 
+const logger = log.getLogger('promise');
+
 function isPromise(v) {
   return v && typeof v.then === 'function';
 }
-
 const promiseMiddleware = store => next => (action) => {
   if (isPromise(action.payload)) {
     store.dispatch({ type: ASYNC_START, subtype: action.type });
@@ -20,16 +23,16 @@ const promiseMiddleware = store => next => (action) => {
         if (!skipTracking && currentState.viewChangeCounter !== currentView) {
           return;
         }
-        console.log('RESULT', res);
+        logger.debug('RESULT', res);
         store.dispatch({ type: ASYNC_END, promise: res });
-        store.dispatch({ ...action, playload: res });
+        store.dispatch({ ...action, payload: res });
       },
       (error) => {
         const currentState = store.getState();
         if (!skipTracking && currentState.viewChangeCounter !== currentView) {
           return;
         }
-        console.log('ERROR', error);
+        logger.debug('ERROR', error);
         const payload = error.response.body;
         if (!action.skipTracking) {
           store.dispatch({ type: ASYNC_END, promise: payload });
