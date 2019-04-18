@@ -1,15 +1,7 @@
 import React from 'react';
 import { Button, Input } from '@alifd/next';
-import { useMappedState } from 'redux-react-hook';
-
 
 export default function Projects() {
-  const { projects } = useMappedState(state => ({
-    projects: state.projects,
-  }));
-
-  console.debug('projects', projects);
-
   let projectPath = '';
 
   return (

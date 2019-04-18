@@ -1,11 +1,7 @@
 export const ADD_PROJECT = 'iceworks/projects/ADD_PROJECT';
 export const DELETE_PROJECT = 'iceworks/projects/DELETE_PROJECT';
 
-export default function reducer(state, action) {
-  if (!state) {
-    return null;
-  }
-
+export default function reducer(state = {}, action) {
   switch (action.type) {
     case ADD_PROJECT: {
       return {
