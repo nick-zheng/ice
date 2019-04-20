@@ -43,11 +43,11 @@ class Projects extends Component {
         <div>
           Project
         </div>
-        <div>
-          {projects.map(({ name }) => {
-            return name;
+        <ul>
+          {projects.map(({ name }, index) => {
+            return <li key={index}>{name}</li>;
           })}
-        </div>
+        </ul>
         <div>
           <div>
             <Input onChange={(value) => {
